@@ -1,4 +1,4 @@
-package LunchPicker;
+package com.firebirdcss.tools.lunch_picker.application;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,7 +18,7 @@ import java.util.Random;
  * @author Scott Griffis
  *
  */
-public class LunchPicker {
+public class ApplicationMain {
 	/**
 	 * Body of the application.<br> 
 	 * This is the primary method of this application.

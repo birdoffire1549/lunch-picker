@@ -1,0 +1,50 @@
+plugins {
+    id "java"
+    id "eclipse"
+}
+
+def getDate() {
+	return (new Date()).format("MM-dd-yyyy HH:mm:ss")
+}
+
+sourceCompatibility = 1.8
+group = "tools.firebirdcss.com"
+version = "1.0.0"
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+    main {
+        java.srcDirs "src/main/java"
+	    resources.srcDirs "src/main/resources"
+    }
+
+    test {
+		java.srcDir "src/test/java"
+    }
+}
+
+dependencies {
+	testCompile "junit:junit:4.11"
+}
+
+jar {
+	archiveName = "lunch-picker.jar"
+	manifest {
+        	attributes "Implementation-Title": "Lunch Picker",
+        		"Implementation-Version": version,
+        		"Implementation-Vendor": "Firebird CSS",
+        		"Build-Date": getDate(),
+        		"Main-Class": "com.firebirdcss.tools.lunch_picker.application.ApplicationMain"
+	}
+	from (sourceSets.main.output) {
+		include "com/firebirdcss/tools/lunch_picker/application/**"
+	}
+	from { 
+		configurations.compile.collect { 
+			it.isDirectory() ? it : zipTree(it) 
+		} 
+	}
+}
